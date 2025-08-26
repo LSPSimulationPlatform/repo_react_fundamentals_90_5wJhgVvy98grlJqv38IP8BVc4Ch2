@@ -1,105 +1,23 @@
-import ProductCreate from "./components/ProductCreate";
-
+import { useState } from "react"; // Import the useState hook from React for state management
+import ProductCreate from "./components/ProductCreate"; // Import the ProductCreate component from the components folder
 
 function App() {
-  return ( 
-    <div className="App">
-       <ProductCreate/>
-    <div 
+  // Declare a state variable 'products' with an initial empty array
+  // 'setProducts' is a function to update the 'products' state
+  const [products, setProducts] = useState([]);
 
-      style={{
-        backgroundColor: "#f4f4f4",        // Light gray background for the form container
-        width: 600,                        // Set fixed width of the form
-        borderRadius: 5,                   // Rounded corners for the box
-        padding: "20px 40px 20px 20px",    // Padding: top/right/bottom/left
-        margin: "10px auto",               // Vertical margin and horizontal centering
-        fontFamily: "Arial, sans-serif",   // Use Arial font
-      }}
-    >
+  // Define a function to add a new product to the list
+  const addProduct = (newProduct) => {
+    console.log("New Product", newProduct); // Log the new product to the console
+    setProducts((prev) => [...prev, newProduct]); // Add the new product to the existing list using spread operator
+  };
 
-      <h1 style={{ color: "blue" }}>Product Create Page</h1>
-
-      <label>Product Name</label><br />
-      <input
-        type="text"
-        placeholder="Product Name"
-        style={{
-          width: "100%",           // Full width input
-          padding: 8,              // Inner space
-          marginBottom: 15         // Space below the input
-        }}
-      /><br />
-
-      <label>Product Code</label><br />
-      <input
-        type="text"
-        placeholder="Product Code"
-        style={{
-          width: "100%",           // Full width
-          padding: 8,              // Inner space
-          marginBottom: 15         // Bottom margin
-        }}
-      /><br />
-
-      <label>Release Date</label><br />
-      <input
-        type="date"
-        style={{
-          width: "100%",           // Full width
-          padding: 8,              // Padding inside input
-          marginBottom: 15         // Margin below input
-        }}
-      /><br />
-
-      <label>Product Category</label><br />
-      <select
-        style={{
-          width: "100%",           // Full width dropdown
-          padding: 8,              // Padding for text space
-          marginBottom: 15         // Space below dropdown
-        }}
-      >
-        <option>Electronics</option>
-        <option>Clothing</option>
-        <option>Books</option>
-        <option>Home & Kitchen</option>
-        <option>Toys & Games</option>
-        <option>Health & Beauty</option>
-      </select><br />
-
-      <label>Product Description</label><br />
-      <textarea
-        placeholder="Product Description"
-        rows={4}
-        style={{
-          width: "100%",           // Take full width of container
-          padding: 8,              // Inner spacing
-          marginBottom: 20         // Space below textarea
-        }}
-      ></textarea><br />
-
-      <button
-        style={{
-          backgroundColor: "blue",   // Blue background
-          color: "white",            // White text
-          padding: "10px 20px",      // Padding inside button
-          border: "none",            // No border
-          borderRadius: 5,           // Rounded corners
-          cursor: "pointer",         // Pointer on hover
-          fontSize: 16               // Font size
-        }}
-      >
-        Save
-      </button>
-
-      <button style={{ }}>
-        Back to Main Page
-      </button>
-
+  // Render the ProductCreate component and pass the addProduct function as a prop
+  return (
+    <div>
+      <ProductCreate onAddProduct={addProduct} />
     </div>
-    <ProductCreate></ProductCreate>
-    </div>
-    );
- }
+  );
+}
 
-export default App;
+export default App; // Export the App component as the default export
